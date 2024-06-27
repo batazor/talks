@@ -21,6 +21,14 @@ mdc: true
 
 # SpiceDB
 
+<div class="pt-12">
+  <span @click="next" class="px-2 p-1 rounded cursor-pointer hover:bg-white hover:bg-opacity-10">
+    Press Space for next page <carbon:arrow-right class="inline"/>
+  </span>
+</div>
+
+---
+layout: intro
 ---
 
 # Agenda
@@ -38,6 +46,8 @@ mdc: true
 - **Authentication** - How do you prove it? (password, token, etc)
 - **Authorization** - What are you allowed to do? (RBAC, ABAC, etc)
 
+<br />
+
 ### Flow
 
 Does `<subject>` have `<permission>` to `<object>`?
@@ -48,7 +58,7 @@ Does `<subject>` have `<permission>` to `<object>`?
 
 ---
 
-# Authorization + Identification
+# Authentication + Identification
 
 - Basic Auth
 - JWT (go-jwt, etc...)
@@ -57,13 +67,15 @@ Does `<subject>` have `<permission>` to `<object>`?
 
 ---
 
-# Authentication
+# Authorization
 
 - https://casbin.org/
   - RBAC, ABAC, etc...
   - Go, NodeJS, Python, etc...
 - **usually it's handmade**
 
+---
+layout: intro
 ---
 
 # Kind of Authentication
@@ -118,8 +130,12 @@ Does `<subject>` have `<permission>` to `<object>`?
 ![rebac](https://media.graphassets.com/gTrUj0fZRV6RgqdKvXYv)
 
 ---
+layout: two-cols-header
+---
 
 # Kind of Authentication: ReBAC (Relationship-Based Access Control)
+
+::left::
 
 + Pros
   - Flexible
@@ -128,9 +144,11 @@ Does `<subject>` have `<permission>` to `<object>`?
 - Cons
   - Complex
   - Hard to implement
-  - Hard to understand
+  - Medium to understand
 
-### Entities
+::right::
+
+### Entities:
 
 - Subject
 - Action
@@ -138,11 +156,15 @@ Does `<subject>` have `<permission>` to `<object>`?
 - Relationship
 
 ---
+layout: intro
+---
 
 # Zanzibar
 
 - [Zanzibar: Google’s Consistent, Global Authorization System](https://research.google/pubs/zanzibar-googles-consistent-global-authorization-system/)
 
+---
+layout: image-right
 ---
 
 # Implementation of Zanzibar
@@ -157,7 +179,7 @@ Does `<subject>` have `<permission>` to `<object>`?
 
 - Open Source
 - 4.7k stars
-- UI (editor + test cases + save to file)
+- UI (graph visualization + editor + test cases + save to file)
 - SpiceDB Operator for Kubernetes
 - Extentention for VSCode (Language Server)
 - Wildcard policy
@@ -221,14 +243,23 @@ document:seconddoc#reader@user:tom
 4. PROFIT
 
 ---
+layout: intro
+---
 
 # SpiceDB: Playgrounds
 
-[DEMO](https://play.authzed.com/schema)
+<div class="pt-12">
+  <span @click="next" class="px-2 p-1 rounded cursor-pointer hover:bg-white hover:bg-opacity-10">
+    <a href="https://play.authzed.com/schema" target="_blank">Open Playground</a>
+  </span>
+</div>
 
 ---
+layout: center
+---
 
-# References
+# Learn More
 
 - [SpiceDB Docs](https://authzed.com/docs/spicedb/getting-started/discovering-spicedb)
+- [ABAC on SpiceDB: Enabling Netflix’s Complex Identity Types](https://netflixtechblog.com/abac-on-spicedb-enabling-netflixs-complex-identity-types-c118f374fa89)
 - [Почему авторизация сложно и причем здесь Занзибар? -Максим Горозий, Тинькофф](https://youtu.be/Tr5H8iG0FzI?si=WjvRZ554IpmPWEDd)
