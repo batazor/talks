@@ -1,2 +1,5 @@
 # speakers
-Presentations
+
+Presentations:
+
+- [SpiceDB](spicedb/slides.md)
