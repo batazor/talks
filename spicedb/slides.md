@@ -197,6 +197,36 @@ layout: image-right
 definition user {}
 
 // document represents a document protected by Authzed.
+definition document {}
+```
+
+---
+
+# SpiceDB: Schema
+
+```graphql
+// user represents a user that can be granted role(s)
+definition user {}
+
+// document represents a document protected by Authzed.
+definition document {
+    // writer indicates that the user is a writer on the document.
+    relation writer: user
+
+    // reader indicates that the user is a reader on the document.
+    relation reader: user
+}
+```
+
+---
+
+# SpiceDB: Schema
+
+```graphql
+// user represents a user that can be granted role(s)
+definition user {}
+
+// document represents a document protected by Authzed.
 definition document {
     // writer indicates that the user is a writer on the document.
     relation writer: user
