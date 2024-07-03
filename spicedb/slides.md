@@ -173,7 +173,7 @@ layout: intro
 - Correctness (step-by-step)
 - Flexibility (policy)
 - Low latency (3mc; 99% -> 20mc)
-- High availability
+- High availability (2 minutes for 3 years)
 - Scalability (20m+ rps)
 
 ---
@@ -292,6 +292,20 @@ document:seconddoc#reader@user:tom
 
 ---
 
+# SpiceDB: ACL-filtering
+
+> `SELECT FROM resources WHERE resource.created_by = $1`
+
+<img src="images/acl.png" width="350" />
+
+### References
+
+- [ycombinator](https://news.ycombinator.com/item?id=30362395) - pre/post filtering
+- [ACL Filtering in Authzed/SpiceDB](https://authzed.com/blog/acl-filtering-in-authzed)
+- [The Challenge of ACL Filtering in Relational Databases](https://authzed.com/blog/six-month-profile-page)
+
+---
+
 # SpiceDB: In real life
 
 1. Load schema to SpiceDB by API
@@ -303,10 +317,11 @@ document:seconddoc#reader@user:tom
 
 # Golang: example
 
+[Buf Schema registry](https://buf.build/authzed/api/docs/main:authzed.api.v1alpha1)
+
 ```go 
 relationship := &permission.WriteRelationshipsRequest{
     Updates: []*permission.RelationshipUpdate{{
-        Operation: permission.RelationshipUpdate_OPERATION_CREATE,
         Relationship: &permission.Relationship{
             Resource: &permission.ObjectReference{
                 ObjectType: "document",
@@ -317,16 +332,16 @@ relationship := &permission.WriteRelationshipsRequest{
                 Object: &permission.ObjectReference{
                     ObjectType: "user",
                     ObjectId:   user.GetId(),
-                },
-            },
-        },
-    }},
-}
+}}}}}}
+
+authClient.ReadSchema(ctx, ...)
+authClient.WriteSchema(ctx, ...)
 
 authClient.WriteRelationships(ctx, relationship)
 authClient.DeleteRelationships(ctx, relationship)
 authClient.CheckPermission(ctx, relationship)
 authClient.LookupResources(ctx, relationship)
+authClient.WatchResources(ctx, relationship)
 ```
 
 ---
