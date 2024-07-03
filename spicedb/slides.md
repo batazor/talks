@@ -162,6 +162,33 @@ layout: intro
 # Zanzibar
 
 - [Zanzibar: Google’s Consistent, Global Authorization System](https://research.google/pubs/zanzibar-googles-consistent-global-authorization-system/)
+- [Authzed: zanzibar](https://authzed.com/zanzibar)
+- [Understanding Google Zanzibar: A Comprehensive Overview](https://authzed.com/blog/what-is-google-zanzibar)
+- [Jake Moshenko on Zanzibar: Google’s Consistent, Global Authorization System](https://youtu.be/1nbSbe3kw2U?si=KpHYg7Ui7AOdcsGi)
+
+---
+
+# Zanzibar: goals
+
+- Correctness (step-by-step)
+- Flexibility (policy)
+- Low latency (3mc; 99% -> 20mc)
+- High availability
+- Scalability (20m+ rps)
+
+---
+
+# Zanzibar: architecture
+
+![architecture](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*rKxFiyEIW240TDoBpPscYg.png)
+
+---
+
+# Zanzibar: features
+
+- Relation Tuples (Subject, Action, Object)
+- Namespace Configuration (Domain)
+- Good API (Check, Write, Read, Watch)
 
 ---
 layout: image-right
@@ -271,6 +298,36 @@ document:seconddoc#reader@user:tom
 2. Load tuples to SpiceDB by API
 3. Check permission by API
 4. PROFIT
+
+---
+
+# Golang: example
+
+```go 
+relationship := &permission.WriteRelationshipsRequest{
+    Updates: []*permission.RelationshipUpdate{{
+        Operation: permission.RelationshipUpdate_OPERATION_CREATE,
+        Relationship: &permission.Relationship{
+            Resource: &permission.ObjectReference{
+                ObjectType: "document",
+                ObjectId:   document.GetId(),
+            },
+            Relation: "writer",
+            Subject: &permission.SubjectReference{
+                Object: &permission.ObjectReference{
+                    ObjectType: "user",
+                    ObjectId:   user.GetId(),
+                },
+            },
+        },
+    }},
+}
+
+authClient.WriteRelationships(ctx, relationship)
+authClient.DeleteRelationships(ctx, relationship)
+authClient.CheckPermission(ctx, relationship)
+authClient.LookupResources(ctx, relationship)
+```
 
 ---
 layout: intro
