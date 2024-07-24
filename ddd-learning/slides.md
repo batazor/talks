@@ -26,6 +26,10 @@ mdc: true
 
 ---
 
+<img src="./images/ddd-book.png" width="40%">
+
+---
+
 # Анализ бизнес доменов
 
 ## Что такое бизнес домен?
@@ -77,9 +81,13 @@ mdc: true
 
 ## Сравнение субдоменов
 
-![domains](./images/domains.png)
+<img src="./images/domains.png" width="70%" />
 
-![domains](./images/domains1.png)
+---
+
+## Сравнение субдоменов
+
+<img src="./images/domains1.png" width="100%" />
 
 ---
 
@@ -109,20 +117,24 @@ mdc: true
 
 ## Gimaster
 
----
+Компания по продаже билетов на мероприятия.
 
-## BusVNext
+<img src="./images/case.jpg" width="45%">
 
 ---
 
 ## Кто такие эксперты по доменнам?
 
+<img src="./images/expert.jpg" width="90%">
+
 ---
 
 ## Summary
 
+<img src="./images/summary.jpg" width="55%">
+
 ---
 
-## Упражнения
+<img src="./images/excercies.jpg" width="57%">
 
 ---
