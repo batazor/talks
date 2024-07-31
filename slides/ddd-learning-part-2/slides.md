@@ -22,617 +22,308 @@ transition: slide-left
 mdc: true
 ---
 
-# Welcome to Slidev
-
-Presentation slides for developers
-
-<div class="pt-12">
-  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
-    Press Space for next page <carbon:arrow-right class="inline"/>
-  </span>
-</div>
-
-<div class="abs-br m-6 flex gap-2">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" alt="GitHub" title="Open in GitHub"
-    class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon-logo-github />
-  </a>
-</div>
-
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
--->
-
----
-transition: fade-out
----
-
-# What is Slidev?
-
-Slidev is a slides maker and presenter designed for developers, consist of the following features
-
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - themes can be shared and re-used as npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embed Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export to PDF, PPTX, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - virtually anything that's possible on a webpage is possible in Slidev
-<br>
-<br>
-
-Read more about [Why Slidev?](https://sli.dev/guide/why)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/features/slide-scope-style
--->
-
-<style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-}
-</style>
-
-<!--
-Here is another comment.
--->
-
----
-transition: slide-up
-level: 2
----
-
-# Navigation
-
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/navigation.html)
-
-## Keyboard Shortcuts
-
-|     |     |
-| --- | --- |
-| <kbd>right</kbd> / <kbd>space</kbd>| next animation or slide |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd> | previous slide |
-| <kbd>down</kbd> | next slide |
-
-<!-- https://sli.dev/guide/animations.html#click-animation -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-  alt=""
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
-
----
-layout: two-cols
-layoutClass: gap-16
----
-
-# Table of contents
-
-You can use the `Toc` component to generate a table of contents for your slides:
-
-```html
-<Toc minDepth="1" maxDepth="1"></Toc>
-```
-
-The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
-
-::right::
-
-<Toc v-click minDepth="1" maxDepth="2"></Toc>
-
----
-layout: image-right
-image: https://cover.sli.dev
----
-
-# Code
-
-Use code snippets and get the highlighting directly, and even types hover![^1]
-
-```ts {all|5|7|7-8|10|all} twoslash
-// TwoSlash enables TypeScript hover information
-// and errors in markdown code blocks
-// More at https://shiki.style/packages/twoslash
-
-import { computed, ref } from 'vue'
-
-const count = ref(0)
-const doubled = computed(() => count.value * 2)
-
-doubled.value = 2
-```
-
-<arrow v-click="[4, 5]" x1="350" y1="310" x2="195" y2="334" color="#953" width="2" arrowSize="1" />
-
-<!-- This allow you to embed external code blocks -->
-<<< @/snippets/external.ts#snippet
-
-<!-- Footer -->
-[^1]: [Learn More](https://sli.dev/guide/line-highlighting)
-
-<!-- Inline style -->
-<style>
-.footnotes-sep {
-  @apply mt-5 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
-
-<!--
-Notes can also sync with clicks
-
-[click] This will be highlighted after the first click
-
-[click] Highlighted with `count = ref(0)`
-
-[click:3] Last click (skip two clicks)
--->
-
----
-level: 2
----
-
-# Shiki Magic Move
-
-Powered by [shiki-magic-move](https://shiki-magic-move.netlify.app/), Slidev supports animations across multiple code snippets.
-
-Add multiple code blocks and wrap them with <code>````md magic-move</code> (four backticks) to enable the magic move. For example:
-
-````md magic-move {lines: true}
-```ts {*|2|*}
-// step 1
-const author = reactive({
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-})
-```
-
-```ts {*|1-2|3-4|3-4,8}
-// step 2
-export default {
-  data() {
-    return {
-      author: {
-        name: 'John Doe',
-        books: [
-          'Vue 2 - Advanced Guide',
-          'Vue 3 - Basic Guide',
-          'Vue 4 - The Mystery'
-        ]
-      }
-    }
-  }
-}
-```
-
-```ts
-// step 3
-export default {
-  data: () => ({
-    author: {
-      name: 'John Doe',
-      books: [
-        'Vue 2 - Advanced Guide',
-        'Vue 3 - Basic Guide',
-        'Vue 4 - The Mystery'
-      ]
-    }
-  })
-}
-```
-
-Non-code blocks are ignored.
-
-```vue
-<!-- step 4 -->
-<script setup>
-const author = {
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-}
-</script>
-```
-````
+# DDD Learning: Part 2
 
 ---
 
-# Components
+## Экспертные знания о предметной области
 
-<div grid="~ cols-2 gap-4">
-<div>
+<br />
 
-You can use Vue components directly inside your slides.
+- единый язык (ubiquitous language)
+- Задачи бизнеса (business problems)
+- Выявление экспертных знаний (domain experts)
 
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
+<br /><br />
 
-```html
-<Counter :count="10" />
-```
+> Бизнес-задачей могут быть оптимизация рабочих процессов, минимизация ручного труда, управление ресурсами, поддержка принятия решений, управление данными и т. д.
 
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
+<br /><br />
 
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
-</div>
-<div>
-
-```html
-<Tweet id="1390115482657726468" />
-```
-
-<Tweet id="1390115482657726468" scale="0.65" />
-
-</div>
-</div>
-
-<!--
-Presenter note with **bold**, *italic*, and ~~striked~~ text.
-
-Also, HTML elements are valid:
-<div class="flex w-full">
-  <span style="flex-grow: 1;">Left content</span>
-  <span>Right content</span>
-</div>
--->
-
----
-class: px-20
----
-
-# Themes
-
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
-
-<div grid="~ cols-2 gap-2" m="t-2">
-
-```yaml
----
-theme: default
----
-```
-
-```yaml
----
-theme: seriph
----
-```
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true" alt="">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true" alt="">
-
-</div>
-
-Read more about [How to use a theme](https://sli.dev/themes/use.html) and
-check out the [Awesome Themes Gallery](https://sli.dev/themes/gallery.html).
+> Эффективность решения зависит от того, насколько хорошо разработчик понимает способ мышления эксперта и его ментальную модель.
+> Эффективный обмен знаниями между экспертами в предметной области и разработчиками программного продукта требует продуктивного общения.
 
 ---
 
-# Clicks Animations
+### Общение
 
-You can add `v-click` to elements to add a click animation.
+![talk.png](./images/talk.png)
 
-<div v-click>
+> Такой процесс разработки программного продукта напоминает детскую игру «Ис- порченный телефон»2: информация о предметной области зачастую искажается.
 
-This shows up when you click the slide:
-
-```html
-<div v-click>This shows up when you click the slide.</div>
-```
-
-</div>
-
-<br>
-
-<v-click>
-
-The <span v-mark.red="3"><code>v-mark</code> directive</span>
-also allows you to add
-<span v-mark.circle.orange="4">inline marks</span>
-, powered by [Rough Notation](https://roughnotation.com/):
-
-```html
-<span v-mark.underline.orange>inline markers</span>
-```
-
-</v-click>
-
-<div mt-20 v-click>
-
-[Learn More](https://sli.dev/guide/animations#click-animation)
-
-</div>
+Предметно-ориентированное программирование предлагает более эффективный способ передачи знаний от экспертов предметной области к программистам: использование единого языка (ubiquitous language)
 
 ---
 
-# Motions
+### Что такое единый язык?
 
-Motion animations are powered by [@vueuse/motion](https://motion.vueuse.org/), triggered by `v-motion` directive.
-
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }"
-  :click-3="{ x: 80 }"
-  :leave="{ x: 1000 }"
->
-  Slidev
-</div>
-```
-
-<div class="w-60 relative">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-square.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-circle.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-triangle.png"
-      alt=""
-    />
-  </div>
-
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
-  </div>
-</div>
-
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
-}
-</script>
-
-<div
-  v-motion
-  :initial="{ x:35, y: 30, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn More](https://sli.dev/guide/animations.html#motion)
-
-</div>
+- единый язык — это язык бизнеса
+- не должно быть никакого технического жаргона
+- каждое понятие единого языка должно иметь одно-единственное значение (Согласованность)
 
 ---
 
-# LaTeX
+### Модель предметной области
 
-LaTeX is supported out-of-box. Powered by [KaTeX](https://katex.org/).
+> Модель — это упрощенное представление вещи или явления, в котором намеренно подчеркиваются одни аспекты и игнорируются другие. Это абстракция с учетом конкретного использования.
+> _Ребекка Вирфс-Брок (Rebecca Wirfs-Brock)_
 
-<div h-3 />
+<img src="./images/maps.png" style="width: 50%; margin: 0 auto;">
 
-Inline $\sqrt{3x-1}+(1+x)^2$
-
-Block
-$$ {1|3|all}
-\begin{aligned}
-\nabla \cdot \vec{E} &= \frac{\rho}{\varepsilon_0} \\
-\nabla \cdot \vec{B} &= 0 \\
-\nabla \times \vec{E} &= -\frac{\partial\vec{B}}{\partial t} \\
-\nabla \times \vec{B} &= \mu_0\vec{J} + \mu_0\varepsilon_0\frac{\partial\vec{E}}{\partial t}
-\end{aligned}
-$$
-
-[Learn more](https://sli.dev/features/latex)
+> Ни одна из этих карт не предоставляет всех подробностей нашей планеты. Каждая содержит ровно столько данных, сколько необходимо для ее конкретной цели: той задачи, для решения которой она создана.
 
 ---
 
-# Diagrams
+### Инструменты
 
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
+- Глоссарии - список терминов и их определений
+- Автоматизированные тесты, написанные на языке Gherkin
+- инструменты статического анализа кода
+- Agile: Люди и взаимодействие важнее процессов и инструментов
 
-<div class="grid grid-cols-4 gap-5 pt-4 -mb-6">
-
-```mermaid {scale: 0.5, alt: 'A simple sequence diagram'}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-```mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectiveness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
-```
-
-```plantuml {scale: 0.7}
-@startuml
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
-}
-
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
-}
-
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
-```
-
-</div>
-
-Learn More: [Mermaid Diagrams](https://sli.dev/guide/features/mermaid) and [PlantUML Diagrams](https://sli.dev/guide/features/plantuml)
-
----
-foo: bar
-dragPos:
-  square: 691,32,167,_,-16
----
-
-# Draggable Elements
-
-Double-click on the draggable elements to edit their positions.
-
-<br>
-
-###### Directive Usage
-
-```md
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-```
-
-<br>
-
-###### Component Usage
-
-```md
-<v-drag text-3xl>
-  <carbon:arrow-up />
-  Use the `v-drag` component to have a draggable container!
-</v-drag>
-```
-
-<v-drag pos="663,206,261,_,-15">
-  <div text-center text-3xl border border-main rounded>
-    Double-click me!
-  </div>
-</v-drag>
-
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-
-###### Draggable Arrow
-
-```md
-<v-drag-arrow two-way />
-```
-
-<v-drag-arrow pos="67,452,253,46" two-way op70 />
-
----
-src: ./pages/imported-slides.md
-hide: false
----
+![test](https://lh7-us.googleusercontent.com/docsz/AD_4nXeH_xkoQqLvRtb91qN0gGaNjqd-q0GsEY_l95ShizLyI2D5T037dsXEtC2y6k87ESOVaEMoltSQlBiOlyJcO3XwtWwQ5EO9FRJkIeHOqzbRbzF5Qm3nKMW8deaOM7cfzixqHYj4D8jXohPdZ78HXbczbnzQ?key=EEmTOdutIfrkASqFuEoPaA)
 
 ---
 
-# Monaco Editor
+### Выводы
 
-Slidev provides built-in Monaco Editor support.
-
-Add `{monaco}` to the code block to turn it into an editor:
-
-```ts {monaco}
-import { ref } from 'vue'
-import { emptyArray } from './external'
-
-const arr = ref(emptyArray(10))
-```
-
-Use `{monaco-run}` to create an editor that can execute the code directly in the slide:
-
-```ts {monaco-run}
-import { version } from 'vue'
-import { emptyArray, sayHello } from './external'
-
-sayHello()
-console.log(`vue ${version}`)
-console.log(emptyArray<number>(10).reduce(fib => [...fib, fib.at(-1)! + fib.at(-2)!], [1, 1]))
-```
+- общение и обмен знаниями - это важно для успешной разработки программного продукта
+- Чтобы общение было плодотворным, единый язык должен устранять неопределенности и скрытые предположения
+- Развитие единого языка — непрерывный процесс
 
 ---
-layout: center
-class: text-center
+
+## Глава 3: Как осмыслить сложность предметной области
+
 ---
 
-# Learn More
+### Противоречивые модели
 
-[Documentation](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/showcases.html)
+<img src="./images/lead.png"  style="width: 100%; margin: 0 auto;">
 
-<PoweredBySlidev mt-10 />
+Термин «lead» в отделах маркетинга и продаж имеет разные значения:
+
+- в отделе маркетинга — это потенциальный клиент (потенциальный покупатель)
+- в отделе продаж — весь жизненный цикл процесса продажи (от первого контакта до заключения сделки)
+
+---
+
+#### Решение
+
+<img src="./images/lead.png"  style="width: 50%; margin: 0 auto;">
+
+- Единый язык в рамках предприятия
+  - Нужны префиксы: marketing_lead, sales_lead (никто не будет это использовать в общении)
+  - Сложно поддерживать
+  - Много пересечений
+- Язык в рамках отдела (ограниченный контекст)
+  - Префиксы не нужны
+  - Проще поддерживать
+  - Меньше пересечений
+
+---
+
+### Ограниченный контекст
+
+
+<img src="./images/context.png"  style="width: 70%; margin: 0 auto;">
+
+- Границы модели (bounded context) — это области, в которых определены термины и их значения
+- единый язык в рамках ограниченного контекста
+
+---
+
+
+### Область применения ограниченного контекста
+
+> модели можно разбить на еще более мелкие ограниченные контексты.
+
+<img src="./images/split_context.png"  style="width: 50%; margin: 0 auto;">
+
+
+---
+
+### Сравнение ограниченных контекстов и поддоменов
+
+<br />
+
+- Поддомены (основных (core), универсальных (generic) и вспомогательных (supporting))
+- Ограниченные контексты (ограниченные контексты определяются в процессе проектирования)
+
+<br />
+<br />
+
+> Проектировщики решают, как разбить предметную область (business domain) на более мелкие, управляемые области задач (problem domains).
+
+---
+
+### Взаимодействие поддоменов и ограниченных контекстов
+
+<img src="./images/model.png"  style="width: 40%; margin: 0 auto;">
+
+> Если модели все еще слишком большие и их трудно поддерживать, можно разбить их на еще более мелкие ограниченные контексты
+
+<img src="./images/models.png"  style="width: 42%; margin: 0 auto;">
+
+
+---
+
+### Границы
+
+- **Физические границы** - ограниченный контекст должен быть реализован как отдельный сервис или проект
+- **Границы владения** - Никакие две команды не могут работать над одним и тем же ограниченным контекстом
+
+<img src="./images/teams.png"  style="width: 60%; margin: 0 auto;">
+
+---
+
+### Пример модели - Покупка холодильника
+
+<img src="./images/cold.png"  style="width: 60%; margin: 0 auto;">
+
+---
+
+### Пример модели - Покупка холодильника
+
+<img src="./images/cold2.png"  style="width: 60%; margin: 0 auto;">
+
+---
+
+### Выводы
+
+- Единый язык в рамках своего ограниченного контекста должен быть непротиворечивым
+- Разбиение предметной области на ограниченные контексты является стратегическим проектным решением
+- Ограниченный контекст и его единый язык могут реализовываться и поддерживаться одной командой
+- Ограниченные контексты разбивают систему на физические компоненты — сервисы, подсистемы и т.д
+
+---
+
+## Глава 4: Интеграция ограниченных контекстов
+
+_Ограниченный контекст_ (**Bounded Context**) защищает согласованность единого языка (**Ubiquitous Language**) внутри своих границ 
+и открывает возможности к построению моделей. 
+
+> Построить модель, не определив цель ее существования, 
+т.е. не зафиксировав ее границы, невозможно. Эта граница — граница ответственностей языков, 
+она означает, что одни и те же бизнес-сущности в разных ограниченных контекстах могут использоваться 
+для решения различных задач.
+
+---
+
+### Сотрудничество (Cooperation)
+
+Паттерны сотрудничества (cooperation) относятся к ограниченным контекстам (bounded context), реализованным командами 
+с хорошо налаженным взаимодействием.
+
+- **Партнерство** (Partnership)
+- **Общее ядро** (shared kernel)
+
+---
+
+### Партнерство
+
+В партнерской (**partnership**) модели интеграция ограниченных контекстов координируется по ситуации. 
+Одна команда может уведомить вторую команду об изменении API, а вторая команда адаптируется к нему в духе сотрудничества — без драм и конфликтов
+
+![partner.png](./images/partner.png)
+
+---
+
+### Общее ядро
+
+Здесь крайне важно отметить, что общая модель разрабатывается в соответствии с потребностями всех ограниченных контекстов.
+
+<img src="./images/core.png"  style="width: 50%; margin: 0 auto;">
+
+Модель с перекрытием, используемая в нескольких ограниченных контекстах, связывает жизненные циклы.
+В идеале общее ядро (shared kernel) будет состоять только из интеграционных контрактов и структур данных, предназначенных для передачи данных через границы ограниченных контекстов.
+
+---
+
+##### Когда следует воспользоваться общим ядром
+
+<img src="./images/core.png"  style="width: 50%; margin: 0 auto;">
+
+- Избежать дублирования логики и снизить затраты на поддержку
+- постепенная модернизация устаревшей системы
+- для интеграции ограниченных контекстов, принадлежащих и реализуемых одной и той же командой
+
+---
+
+### Потребитель-Поставщик (Customer-supplier)
+
+Поставщик (supplier), предоставляет услуги своим потребителям (customer). 
+Поставщик услуг находится «выше по течению», а клиент или потребитель — «ниже по течению».
+
+
+<img src="./images/pipeline.png"  style="width: 50%; margin: 0 auto;">
+
+- **конформист** (conformist)
+- **предохранительный слой** (anticorruption layer)
+- **сервис с открытым протоколом** (open-host service)
+
+---
+
+### Конформист (Conformist)
+
+В ряде случаев при сложившемся балансе сил предпочтение отдается вышестоящей (upstream) команде, у которой нет 
+никакой реальной мотивации поддерживать потребности своих клиентов. Вместо этого она просто предоставляет интеграционный контракт, 
+определенный в соответствии со своей собственной моделью по принципу «хочешь принимай, хочешь не принимай». 
+
+<img src="./images/pipe1.png"  style="width: 60%; margin: 0 auto;">
+
+> Такой дисбаланс сил может быть вызван интеграцией с внешними по отношению к организации поставщиками услуг, 
+или же просто сложившейся политикой организации.
+
+---
+
+### Предохранительный слой (Anticorruption Layer)
+
+Предохранительный слой (**Anticorruption Layer**) предназначен для тех сценариев, когда прилагать усилия для подстройки 
+под модель поставщика нежелательно или нецелесообразно
+
+<img src="./images/pipe3.png"  style="width: 60%; margin: 0 auto;">
+
+- Когда нисходящий (downstream) ограниченный контекст содержит основной поддомен (core subdomain)
+- Когда восходящая (upstream) модель неэффективна или не соответствует нуждам потребителя
+- Когда контракт поставщика меняется слишком часто
+
+---
+
+### Сервис с открытым протоколом (Open-host Service)
+
+Этот паттерн предназначен для случаев, когда главная роль принадлежит потребителям. 
+Поставщик заинтересован в защите своих потребителей и высочайшем качестве их обслуживания.
+
+
+<img src="./images/pipe4.png"  style="width: 45%; margin: 0 auto;">
+<img src="./images/pipe5.png"  style="width: 45%; margin: 0 auto;">
+
+---
+
+### Разные пути (Separate Ways)
+
+Такая линия поведения может возникнуть по разным причинам в тех случаях, когда команды не хотят или не могут сотрудничать.
+
+- Проблемы общения
+- Универсальный поддомен (Generic Subdomain) (например логирование)
+- Различия в моделях
+
+---
+
+### Карта контекстов (Context Map)
+
+<img src="./images/map-example.png"  style="width: 60%; margin: 0 auto;">
+
+- Высокоуровневое проектирование
+- Модели общения
+- Организационные вопросы
+
+---
+
+### Поддержка в актуальном состоянии
+
+Карта контекстов может вестись и поддерживаться в виде кода с использованием инструмента, подобного Context Mapper.
+
+- pUML
+- Arhimate
