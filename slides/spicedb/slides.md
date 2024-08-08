@@ -367,8 +367,6 @@ layout: center
 - [Почему авторизация сложно и причем здесь Занзибар? -Максим Горозий, Тинькофф](https://youtu.be/Tr5H8iG0FzI?si=WjvRZ554IpmPWEDd)
 
 ---
-layout: contact
----
 
 # Thank you!
 
