@@ -296,7 +296,7 @@ document:seconddoc#reader@user:tom
 
 > `SELECT FROM resources WHERE resource.created_by = $1`
 
-<img src="images/acl.png" width="350" />
+<img src="./images/acl.png" width="350" />
 
 ### References
 
@@ -365,3 +365,13 @@ layout: center
 - [SpiceDB Docs](https://authzed.com/docs/spicedb/getting-started/discovering-spicedb)
 - [ABAC on SpiceDB: Enabling Netflix’s Complex Identity Types](https://netflixtechblog.com/abac-on-spicedb-enabling-netflixs-complex-identity-types-c118f374fa89)
 - [Почему авторизация сложно и причем здесь Занзибар? -Максим Горозий, Тинькофф](https://youtu.be/Tr5H8iG0FzI?si=WjvRZ554IpmPWEDd)
+
+---
+layout: contact
+---
+
+# Thank you!
+
+- [email](mailto:batazor111@gmail.com)
+- [telegram](https://t.me/batazor)
+- [github](https://github.com/batazor)
