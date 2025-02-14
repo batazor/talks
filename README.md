@@ -7,3 +7,4 @@ Presentations:
 - [ddd-learning: part 2](ddd-learning-part-2/slides.md)
 - [ddd-learning: part 3](ddd-learning-part-3/slides.md)
 - [ddd-learning: part 4](ddd-learning-part-4/slides.md)
+- [project manager: part 1](slides/project-manager-from-zero/slides.md)
