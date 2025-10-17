@@ -127,7 +127,7 @@ layout: intro
 
 # Kind of Authentication: ReBAC (Relationship-Based Access Control)
 
-![rebac](https://media.graphassets.com/gTrUj0fZRV6RgqdKvXYv)
+<img src="https://media.graphassets.com/gTrUj0fZRV6RgqdKvXYv"  style="width: 62%; margin: 0 auto;">
 
 ---
 layout: two-cols-header
@@ -205,11 +205,14 @@ layout: image-right
 # SpiceDB
 
 - Open Source
-- 4.7k stars
+- 6.1k stars
 - UI (graph visualization + editor + test cases + save to file)
 - SpiceDB Operator for Kubernetes
 - Extentention for VSCode (Language Server)
 - Wildcard policy
+
+<br />
+<br />
 
 ### References
 
